@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {TextField} from "@material-ui/core";
 import API from './utils/API';
+import Album from '../src/components/Album';
 
 function App() {
     const [books, setBooks] = useState([]);
@@ -21,9 +21,8 @@ function App() {
     return (
       <div style={{maxWidth: '1000px', margin: '0 auto'}}>
         <h1>React Google Book Search</h1>
-          <p>Search for a book.</p>
           {books.length && books[0].volumeInfo.title} {/*Checks if the books array has data.*/} <br />
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+          <Album />
       </div>
     );
 }
