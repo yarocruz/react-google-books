@@ -95,7 +95,7 @@ export default function Album() {
                                         variant="outlined"
                                         InputProps={{
                                             endAdornment: <InputAdornment position="end">
-                                                <Button variant="text" color="primary" fullWidth={true}>
+                                                <Button variant="text" color="primary" fullWidth={false}>
                                                     Search
                                                 </Button>
                                             </InputAdornment>,
@@ -119,6 +119,9 @@ export default function Album() {
                                         title="Image title"
                                     />
                                     <CardContent className={classes.cardContent}>
+                                        <img
+                                            style={{ borderRadius: '9px', border: '1px solid #ddd'}}
+                                            src={'https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'}/>
                                         <Typography gutterBottom variant="h5" component="h2">
                                             Heading
                                         </Typography>
