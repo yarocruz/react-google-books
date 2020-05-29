@@ -1,5 +1,5 @@
 {
-  "name": "React Google Books",
+  "name": "ReactGoogleBooks",
   "version": "1.0.0",
   "description": "React Based app that uses Google Books API to find and save book data.",
   "main": "server.js",

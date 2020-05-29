@@ -19,9 +19,7 @@ function App() {
     }
     console.log(books);
     return (
-      <div style={{maxWidth: '1000px', margin: '0 auto'}}>
-        <h1>React Google Book Search</h1>
-          {books.length && books[0].volumeInfo.title} {/*Checks if the books array has data.*/} <br />
+      <div>
           <Album />
       </div>
     );
