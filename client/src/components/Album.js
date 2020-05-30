@@ -121,7 +121,9 @@ export default function Album() {
                                     <CardContent className={classes.cardContent}>
                                         <img
                                             style={{ borderRadius: '9px', border: '1px solid #ddd'}}
-                                            src={'https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'}/>
+                                            src={'https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'}
+                                            alt='book cover'
+                                        />
                                         <Typography gutterBottom variant="h5" component="h2">
                                             Heading
                                         </Typography>
