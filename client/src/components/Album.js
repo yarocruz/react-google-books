@@ -1,7 +1,6 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -15,6 +14,7 @@ import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import { TextField } from "@material-ui/core";
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Logo from '../assets/ucf-logo.png';
 
 function Copyright() {
     return (
@@ -71,7 +71,7 @@ export default function Album() {
             <CssBaseline />
             <AppBar position="relative">
                 <Toolbar>
-                    <CameraIcon className={classes.icon} />
+                    <img style={{ paddingRight: '10px' }} src={Logo} alt='University of Florida Logo'/>
                     <Typography variant="h6" color="inherit" noWrap>
                         Bootcamp Project
                     </Typography>
