@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -11,23 +11,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
 import { TextField } from "@material-ui/core";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Logo from '../assets/ucf-logo.png';
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import Footer from '../components/Footer';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -65,6 +52,12 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export default function Album() {
     const classes = useStyles();
+    const [ searchQuery, setSearchQuery ] = useState();
+
+    const handleSearch = (e) => {
+        setSearchQuery(e.target.value);
+        console.log(searchQuery);
+    }
 
     return (
         <React.Fragment>
@@ -91,6 +84,7 @@ export default function Album() {
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
                                     <TextField
+                                        onChange={handleSearch}
                                         id="outlined-basic"
                                         variant="outlined"
                                         InputProps={{
@@ -153,7 +147,7 @@ export default function Album() {
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
                     Something here to give the footer a purpose!
                 </Typography>
-                <Copyright />
+                <Footer />
             </footer>
             {/* End footer */}
         </React.Fragment>
