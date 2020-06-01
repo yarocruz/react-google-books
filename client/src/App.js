@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from './utils/API';
 import Album from '../src/components/Album';
+import { BrowserRouter as Router} from "react-router-dom";
 
 function App() {
     const [books, setBooks] = useState([]);
@@ -20,7 +21,9 @@ function App() {
     console.log(books);
     return (
       <div>
-          <Album />
+          <Router>
+            <Album />
+          </Router>
       </div>
     );
 }
