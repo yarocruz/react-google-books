@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,6 +14,8 @@ import { TextField } from "@material-ui/core";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Logo from '../assets/ucf-logo.png';
 import Footer from '../components/Footer';
+
+import API from '../utils/API';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -48,15 +49,21 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 export default function Album() {
     const classes = useStyles();
-    const [ searchQuery, setSearchQuery ] = useState();
+    const [ books, setBooks ] = useState([]);
+    const searchRef = useRef();
 
     const handleSearch = (e) => {
-        setSearchQuery(e.target.value);
-        console.log(searchQuery);
+        e.preventDefault();
+        API.findBook(searchRef.current.value)
+            .then(res => {
+                console.log(res.data);
+                setBooks(res.data.items);
+                console.log(books);
+            })
+            .catch(err => console.log(err));
+
     }
 
     return (
@@ -71,7 +78,6 @@ export default function Album() {
                 </Toolbar>
             </AppBar>
             <main>
-                {/* Hero unit */}
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -83,18 +89,20 @@ export default function Album() {
                         <div className={classes.heroButtons}>
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
-                                    <TextField
-                                        onChange={handleSearch}
-                                        id="outlined-basic"
-                                        variant="outlined"
-                                        InputProps={{
-                                            endAdornment: <InputAdornment position="end">
-                                                <Button variant="text" color="primary" fullWidth={false}>
-                                                    Search
-                                                </Button>
-                                            </InputAdornment>,
-                                        }}
-                                    />
+                                    <form onSubmit={handleSearch}>
+                                        <TextField
+                                            inputRef={searchRef}
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            InputProps={{
+                                                endAdornment: <InputAdornment position="end">
+                                                    <Button variant="text" color="primary" fullWidth={false}>
+                                                        Search
+                                                    </Button>
+                                                </InputAdornment>,
+                                            }}
+                                        />
+                                    </form>
 
                                 </Grid>
                             </Grid>
@@ -104,33 +112,31 @@ export default function Album() {
                 <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
                     <Grid container spacing={4}>
-                        {cards.map((card) => (
-                            <Grid item key={card} xs={12} sm={6} md={4}>
+                        {!books || books.map((book) => (
+                            <Grid item key={book.id} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
-                                    <CardMedia
-                                        className={classes.cardMedia}
-                                        image="https://source.unsplash.com/random"
-                                        title="Image title"
-                                    />
                                     <CardContent className={classes.cardContent}>
                                         <img
                                             style={{ borderRadius: '9px', border: '1px solid #ddd'}}
-                                            src={'https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'}
+                                            src={book.volumeInfo.imageLinks.thumbnail}
                                             alt='book cover'
                                         />
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            Heading
+                                            {book.volumeInfo.title}
                                         </Typography>
                                         <Typography>
-                                            This is a media card. You can use this section to describe the content.
+                                            {book.volumeInfo.description}
+                                        </Typography>
+                                        <Typography variant="h5">
+                                            {book.volumeInfo.authors}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
                                         <Button size="small" color="primary">
-                                            View
+                                            <a href={book.volumeInfo.infoLink}>More Info</a>
                                         </Button>
                                         <Button size="small" color="primary">
-                                            Edit
+                                            Add Book
                                         </Button>
                                     </CardActions>
                                 </Card>
