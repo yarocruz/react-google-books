@@ -15,8 +15,8 @@ export default {
                 title: bookInfo.volumeInfo.title,
                 authors: bookInfo.volumeInfo.authors,
                 description: bookInfo.volumeInfo.description,
-                image: bookInfo.volumeInfo.image,
-                link: bookInfo.volumeInfo.link
+                image: bookInfo.volumeInfo.imageLinks.thumbnail,
+                link: bookInfo.volumeInfo.infoLink
             });
     }
 };

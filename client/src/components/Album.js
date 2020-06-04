@@ -13,7 +13,7 @@ import Container from '@material-ui/core/Container';
 import { TextField } from "@material-ui/core";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Logo from '../assets/ucf-logo.png';
-import Footer from '../components/Footer';
+import { Link } from "react-router-dom";
 
 import API from '../utils/API';
 
@@ -81,7 +81,14 @@ export default function Album() {
                 <Toolbar>
                     <img style={{ paddingRight: '10px' }} src={Logo} alt='University of Florida Logo'/>
                     <Typography variant="h6" color="inherit" noWrap>
-                        Bootcamp Project
+                       <Link to="/" style={{ textDecoration: 'none', color: '#fff' }}>Bootcamp Project</Link>
+                    </Typography>
+                    <Typography
+                        style={{ marginRight: '10px' }}
+                        variant="h6">
+                        <Link
+                            style={{ textDecoration: 'none', color: '#fff', paddingLeft: '20px' }}
+                            to='/saved'>Saved Books</Link>
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -153,17 +160,6 @@ export default function Album() {
                     </Grid>
                 </Container>
             </main>
-            {/* Footer */}
-            <footer className={classes.footer}>
-                <Typography variant="h6" align="center" gutterBottom>
-                    Footer
-                </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Something here to give the footer a purpose!
-                </Typography>
-                <Footer />
-            </footer>
-            {/* End footer */}
         </React.Fragment>
     );
 }
