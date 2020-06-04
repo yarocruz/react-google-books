@@ -63,7 +63,15 @@ export default function Album() {
                 console.log(books);
             })
             .catch(err => console.log(err));
+    }
 
+    const handleSave = (book) => {
+        API.saveBook(book)
+            .then(res => {
+               console.log(res);
+               console.log(book.id);
+            })
+            .catch(err => console.log(err));
     }
 
     return (
@@ -135,7 +143,7 @@ export default function Album() {
                                         <Button size="small" color="primary">
                                             <a href={book.volumeInfo.infoLink}>More Info</a>
                                         </Button>
-                                        <Button size="small" color="primary">
+                                        <Button size="small" color="primary" onClick={() => handleSave(book)}>
                                             Add Book
                                         </Button>
                                     </CardActions>
