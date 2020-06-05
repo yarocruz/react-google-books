@@ -56,7 +56,7 @@ export default function Album() {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        API.findBook(searchRef.current.value)
+        API.findBooks(searchRef.current.value)
             .then(res => {
                 console.log(res.data);
                 setBooks(res.data.items);
