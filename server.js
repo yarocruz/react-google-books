@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 // Define any API routes before this runs
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || 'localhost/savedbooks', {
+mongoose.connect(process.env.MONGODB_URI || 'jaycruz:p0Rtf0lio@dbh85.mlab.com:27857/heroku_3v3m1kjh', {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
