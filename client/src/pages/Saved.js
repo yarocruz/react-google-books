@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -48,8 +48,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Saved() {
     const classes = useStyles();
-    const [ books, setBooks ] = useState([]);
-    const searchRef = useRef();
+    const [ savedBooks, setSavedBooks ] = useState();
+
+    useEffect(() => {
+        API.getBooks()
+            .then(response => {
+                console.log(response);
+                setSavedBooks(response.data);
+                console.log(savedBooks);
+            }).catch(err => console.log(err));
+    }, []);
 
     return (
         <React.Fragment>
@@ -71,30 +79,29 @@ export default function Saved() {
             </AppBar>
             <main>
                 <Container className={classes.cardGrid} maxWidth="md">
-                    {/* End hero unit */}
                     <Grid container spacing={4}>
-                        {!books || books.map((book) => (
-                            <Grid item key={book.id} xs={12} sm={6} md={4}>
+                        {!savedBooks || savedBooks.map((book) => (
+                            <Grid item key={book._id} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
                                     <CardContent className={classes.cardContent}>
                                         <img
                                             style={{ borderRadius: '9px', border: '1px solid #ddd'}}
-                                            src={book.volumeInfo.imageLinks.thumbnail}
+                                            src={book.image}
                                             alt='book cover'
                                         />
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            {book.volumeInfo.title}
+                                            {book.title}
                                         </Typography>
                                         <Typography>
-                                            {book.volumeInfo.description}
+                                            {book.description}
                                         </Typography>
                                         <Typography variant="h5">
-                                            {book.volumeInfo.authors}
+                                            {book.authors}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
                                         <Button size="small" color="primary">
-                                            <a href={book.volumeInfo.infoLink}>More Info</a>
+                                            <a href={book.link}>More Info</a>
                                         </Button>
                                     </CardActions>
                                 </Card>
