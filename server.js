@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const routes = require('./routes/api/book');
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build/index.html"));
+  app.use(express.static("client/build"));
 }
 
 app.use(bodyParser.urlencoded({ extended: false }));
