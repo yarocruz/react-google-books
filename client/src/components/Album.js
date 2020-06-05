@@ -133,7 +133,7 @@ export default function Album() {
                                     <CardContent className={classes.cardContent}>
                                         <img
                                             style={{ borderRadius: '9px', border: '1px solid #ddd'}}
-                                            src={book.volumeInfo.imageLinks.thumbnail}
+                                            src={book.volumeInfo.imageLinks.smallThumbnail}
                                             alt='book cover'
                                         />
                                         <Typography gutterBottom variant="h5" component="h2">

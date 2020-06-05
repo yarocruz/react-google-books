@@ -51,13 +51,25 @@ export default function Saved() {
     const [ savedBooks, setSavedBooks ] = useState();
 
     useEffect(() => {
+      loadBooks();
+    }, []);
+
+    const loadBooks = () => {
         API.getBooks()
             .then(response => {
                 console.log(response);
                 setSavedBooks(response.data);
                 console.log(savedBooks);
             }).catch(err => console.log(err));
-    }, []);
+    }
+
+    const handleDelete = (id) => {
+        API.deleteBook(id)
+            .then(res => {
+                console.log(res.data);
+                loadBooks();
+            }).catch(err => console.log(err));
+    }
 
     return (
         <React.Fragment>
@@ -102,6 +114,9 @@ export default function Saved() {
                                     <CardActions>
                                         <Button size="small" color="primary">
                                             <a href={book.link}>More Info</a>
+                                        </Button>
+                                        <Button size="small" color="primary" onClick={() => handleDelete(book)}>
+                                            Remove Book
                                         </Button>
                                     </CardActions>
                                 </Card>
