@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGODB_URI || 'jaycruz:p0Rtf0lio@dbh85.mlab.com:27
 });
 
 app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 
 app.listen(PORT, function() {
