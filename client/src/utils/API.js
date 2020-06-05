@@ -6,8 +6,11 @@ import axios from 'axios';
 const API_KEY = 'AIzaSyDDQAq29aepI77u8zTOZLkZIq0BCAHWTl0';
 
 export default {
-    findBook: function (query) {
+    findBooks: function (query) {
         return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${API_KEY}`);
+    },
+    getBooks: function() {
+        return axios.get('/api/books');
     },
     saveBook: function (bookInfo) {
         return axios.post(`/${bookInfo.id}`,
